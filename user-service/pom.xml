@@ -25,12 +25,18 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-<!--        eureka-->
+<!--        &lt;!&ndash;        eureka&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+<!--        </dependency>-->
+        <!--    nacos-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>app</finalName>
         <plugins>

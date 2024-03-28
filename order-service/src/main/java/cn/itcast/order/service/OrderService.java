@@ -1,5 +1,6 @@
 package cn.itcast.order.service;
 
+import cn.itcast.order.client.UserClient;
 import cn.itcast.order.mapper.OrderMapper;
 import cn.itcast.order.pojo.Order;
 import cn.itcast.order.pojo.User;
@@ -14,16 +15,16 @@ public class OrderService {
     private OrderMapper orderMapper;
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    UserClient userClient;
 
     public Order queryOrderById(Long orderId) {
         // 1.查询订单
         Order order = orderMapper.findById(orderId);
-        // 2.查询用户
-//      String url="http://127.0.0.1:8081/user/"+order.getUserId();
-        String url="http://userservice/user/"+order.getUserId();
-        User user  = restTemplate.getForObject(url, User.class);
+       //2 .feign发送http请求查询用户
+        User user = userClient.findById(order.getUserId());
+        //3.将用户信息封装到订单中
         order.setUser(user);
-        // 4.返回
         return order;
     }
 }
